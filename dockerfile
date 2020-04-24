@@ -10,7 +10,7 @@ USER node
 RUN npm install
 
 COPY . .
-RUN sudo chown -R node:node /home/node/app
+RUN chown -R node:node /home/node/app
 
 EXPOSE 3000
 
