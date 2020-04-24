@@ -6,11 +6,12 @@ RUN npm install -g artillery --ignore-scripts
 WORKDIR /home/node/app
 COPY package*.json ./
 
-USER node
 RUN npm install
 
 COPY . .
 RUN chown -R node:node /home/node/app
+
+USER node
 
 EXPOSE 3000
 
