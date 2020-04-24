@@ -15,4 +15,4 @@ USER node
 
 EXPOSE 3000
 
-CMD [ "node", "app.js" ]
+CMD [ "artillery", "run", "test-config.config"]
