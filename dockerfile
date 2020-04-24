@@ -9,7 +9,8 @@ COPY package*.json ./
 USER node
 RUN npm install
 
-COPY --chown=node:node . .
+COPY . .
+RUN sudo chown -R node:node /home/node/app
 
 EXPOSE 3000
 
