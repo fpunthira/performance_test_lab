@@ -1,0 +1,68 @@
+---
+- hosts: localhost
+  gather_facts: False
+  tasks:
+    - name: ensure a list of packages installed
+      yum:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
+        - epel-release
+        - docker
+        - git
+        - python2-pip
+        - python2-PyMySQL
+        - MySQL-python
+
+    - pip:
+        name:
+          - docker-py
+
+
+
+    - name: ensure firewalld uninstalled
+      yum:
+        name: firewalld
+        state: absent
+
+    - name: Disable SELinux
+      selinux:
+        state: disabled
+
+    - name: Make sure a service is running and enabled
+      systemd:
+        enabled: yes
+        state: started
+        name: "{{ item }}"
+      with_items:
+        - docker
+
+    - name: create a mysql container
+      docker_container:
+        name: mysql
+        image: mysql:5.5
+        state: started
+        env:
+          MYSQL_ROOT_PASSWORD: "Netapp1!"
+          MYSQL_DATABASE: 'db'
+          MYSQL_USER: 'netapp'
+          MYSQL_PASSWORD: 'Netapp1!'
+        exposed_ports:
+          - 3306
+        ports: 
+          - "3306:3306"
+
+    - name: Create database user with name 'bob' and password '12345' with all database privileges
+      mysql_user:
+        login_host: 127.0.0.1
+        login_user: netapp
+        login_password: "Netapp1!"
+
+        name: bob
+        password: 12345
+        priv: '*.*:ALL'
+        state: present
+
+
+        
