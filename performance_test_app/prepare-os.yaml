@@ -52,17 +52,3 @@
           - 3306
         ports: 
           - "3306:3306"
-
-    - name: Create database user with name 'bob' and password '12345' with all database privileges
-      mysql_user:
-        login_host: 127.0.0.1
-        login_user: netapp
-        login_password: "Netapp1!"
-
-        name: bob
-        password: 12345
-        priv: '*.*:ALL'
-        state: present
-
-
-        
