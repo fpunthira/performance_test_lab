@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 var mysql = require('mysql');
 
 var con = mysql.createConnection({
-  host: "127.0.0.1",
+  host: "172.17.0.1",
   user: "netapp",
   password: "Netapp1!",
   database: "db"
