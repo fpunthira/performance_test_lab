@@ -13,4 +13,4 @@ RUN chown -R node:node /home/node/app
 
 USER node
 
-CMD [ "artillery", "run", "test-config.config"]
+CMD [ "artillery", "run", "test-config.yaml"]
