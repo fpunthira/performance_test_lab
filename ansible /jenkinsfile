@@ -1,0 +1,45 @@
+properties([pipelineTriggers([githubPush()])])
+pipeline {
+
+    environment {
+        GIT_URL = 'https://github.com/fpunthira/performance_test_lab.git'
+    }
+    /* specify nodes for executing */
+    agent any
+    stages {
+        stage('test'){
+
+            stage('Checkout'){
+                checkout scm
+            }
+            
+            parallel {
+                stage('Dev stage') {
+                    steps {
+                        dir("dev") {
+                            
+                            echo ">> Run deploy applications "
+                            sh "git status"
+                        }
+                    }
+                }
+                stage('Production stage') {
+                    steps {
+                        dir("prod") {
+                            git branch: 'master', url: GIT_URL
+                            echo ">> Run deploy applications "
+                            sh "git status"
+                        }
+                    }
+                }
+            }
+        }
+    }
+ 
+    /* Cleanup workspace */
+    post {
+       always {
+           deleteDir()
+       }
+   }
+}
