@@ -4,6 +4,7 @@ pipeline {
     environment {
         GIT_URL = 'https://github.com/fpunthira/performance_test_lab.git'
     }
+    
     /* specify nodes for executing */
     agent any
     stages {
