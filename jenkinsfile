@@ -17,10 +17,10 @@ pipeline {
             parallel {
                 stage('Dev stage') {
                     steps {
+                        sh "git branch"
+                        sh "git status"
                         dir("dev") {
-                            
                             echo ">> Run deploy applications "
-                            sh "git status"
                         }
                     }
                 }
@@ -28,7 +28,6 @@ pipeline {
                     steps {
                         dir("prod") {
                             echo ">> Run deploy applications "
-                            sh "git status"
                         }
                     }
                 }
