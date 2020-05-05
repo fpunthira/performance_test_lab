@@ -13,27 +13,27 @@ pipeline {
             }
         }        
         stage('test') {
-            steps {
-                parallel {
-                    stage('Dev stage') {
-                        steps {
-                            dir("dev") {
-                                
-                                echo ">> Run deploy applications "
-                                sh "git status"
-                            }
+
+            parallel {
+                stage('Dev stage') {
+                    steps {
+                        dir("dev") {
+                            
+                            echo ">> Run deploy applications "
+                            sh "git status"
                         }
                     }
-                    stage('Production stage') {
-                        steps {
-                            dir("prod") {
-                                echo ">> Run deploy applications "
-                                sh "git status"
-                            }
+                }
+                stage('Production stage') {
+                    steps {
+                        dir("prod") {
+                            echo ">> Run deploy applications "
+                            sh "git status"
                         }
                     }
                 }
             }
+
         }
     }
  
