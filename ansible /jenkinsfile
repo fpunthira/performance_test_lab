@@ -12,7 +12,7 @@ pipeline {
             stage('Checkout'){
                 checkout scm
             }
-            
+
             parallel {
                 stage('Dev stage') {
                     steps {
@@ -26,7 +26,6 @@ pipeline {
                 stage('Production stage') {
                     steps {
                         dir("prod") {
-                            git branch: 'master', url: GIT_URL
                             echo ">> Run deploy applications "
                             sh "git status"
                         }
