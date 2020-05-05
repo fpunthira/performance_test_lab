@@ -19,6 +19,7 @@ pipeline {
                     steps {
                         sh "git branch"
                         sh "git status"
+                        sh 'printenv'
                         dir("dev") {
                             echo ">> Run deploy applications "
                         }
