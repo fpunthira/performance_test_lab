@@ -7,11 +7,11 @@ pipeline {
     /* specify nodes for executing */
     agent any
     stages {
-        stage('test'){
+        stage('Checkout') {
+            checkout scm
+        }
+        stage('test') {
             steps {
-                stage('Checkout'){
-                    checkout scm
-                }
 
                 parallel {
                     stage('Dev stage') {
