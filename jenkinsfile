@@ -23,9 +23,9 @@ pipeline {
                         sh 'printenv'
                         sh 'ls -al'
                         sh 'id'
-                        sh 'echo ${registry}'
+                        sh "echo ${registry}"
                         dir("test_server") {
-                            sh 'docker build ${registry} + :${env.BUILD_NUMBER}'
+                            sh "docker build ${registry} + :${env.BUILD_NUMBER}"
                         }
                         dir("dev") {
                             echo ">> Run deploy applications "
