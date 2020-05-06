@@ -22,7 +22,7 @@ pipeline {
                         sh 'printenv'
                         sh 'ls -al'
                         dir("test_server") {
-                            docker build -t app:1.0.0 .
+                            sh "docker build -t app:1.0.0 ."
                         }
                         dir("dev") {
                             echo ">> Run deploy applications "
