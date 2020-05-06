@@ -1,6 +1,6 @@
 #### Branch Maater
 ---
-- hosts: localhost
+- hosts: 
   gather_facts: False
   roles:
     - jenkins
