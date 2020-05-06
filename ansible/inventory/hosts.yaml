@@ -1,8 +1,8 @@
 ---
 all:
   children:
-      hosts:
-        jenkins_master:
-          ansible_host: 3.0.57.168
-          ansible_user: ec2-user
-          ansible_become: true
+    hosts:
+      jenkins_master:
+        ansible_host: 3.0.57.168
+        ansible_user: ec2-user
+        ansible_become: true
