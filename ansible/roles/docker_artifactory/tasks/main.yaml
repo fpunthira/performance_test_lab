@@ -3,7 +3,7 @@
     name: artifactory
     image: goodrainapps/artifactory-oss
     state: started
-    volume:
+    volumes:
       - artifactory_data:/var/opt/jfrog/artifactory
     ports: 
       - "8081:8081"
