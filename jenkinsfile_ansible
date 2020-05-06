@@ -1,0 +1,30 @@
+properties([pipelineTriggers([githubPush()])])
+pipeline {
+
+    environment {
+        GIT_URL = 'https://github.com/fpunthira/performance_test_lab.git'
+    }
+    /* specify nodes for executing */
+    agent any
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }        
+        stage('test') {
+
+           steps {
+               sh "ansible-playbook ansible/playbook.yaml"
+           }
+
+        }
+    }
+ 
+    /* Cleanup workspace */
+    post {
+       always {
+           deleteDir()
+       }
+   }
+}
