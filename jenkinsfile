@@ -24,7 +24,7 @@ pipeline {
                         sh 'ls -al'
                         sh 'id'
                         dir("test_server") {
-                            docker.build registry + ":$BUILD_NUMBER"
+                            sh 'docker build -t registry' + ":$BUILD_NUMBER"
                         }
                         dir("dev") {
                             echo ">> Run deploy applications "
