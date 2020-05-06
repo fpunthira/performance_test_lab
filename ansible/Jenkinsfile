@@ -17,7 +17,7 @@ pipeline {
            steps {
                dir("ansible") {
                 sh 'ls -la'
-                sh 'ansible-playbook --become --become-user=root -i inventory ansible/playbook.yaml'
+                sh 'ansible-playbook --become --become-user=root -i inventory playbook.yaml'
                }
            }
 
