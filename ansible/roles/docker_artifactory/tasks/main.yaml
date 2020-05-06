@@ -1,12 +1,10 @@
 - name: create a Artifactory container
   docker_container:
-    name: artifactory
-    image: docker.bintray.io/jfrog/artifactory-oss
+    name: nexus_artifactory
+    image: sonatype/nexus3
     state: started
-    env:
-      MIN_MAX_OPEN_FILES: "100"
     volumes:
-      - artifactory_oss_data2:/var/opt/jfrog/artifactory
+      - nexus-data:/nexus-data
     ports: 
       - "8081:8081"
       - "8082:8082"
