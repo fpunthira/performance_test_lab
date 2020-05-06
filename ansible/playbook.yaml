@@ -1,6 +1,6 @@
 #### Branch Maater
 ---
-- hosts: host1
+- hosts: jenkins_master
   gather_facts: False
   roles:
     - jenkins
