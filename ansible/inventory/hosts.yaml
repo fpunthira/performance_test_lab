@@ -1,6 +1,6 @@
 ---
 all:
-  hosts:
+  children:
     jenkins_master:
       hosts:
         host1:
