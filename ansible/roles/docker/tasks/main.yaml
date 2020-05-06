@@ -1,0 +1,21 @@
+- name: ensure a list of packages installed
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - git
+    - docker
+
+- name: Make sure a service is running and enabled
+  systemd:
+    enabled: yes
+    state: started
+    name: "{{ item }}"
+  with_items:
+    - docker
+
+- name: Enable service Jenkins
+  service:
+    name: docker
+    enabled: yes
