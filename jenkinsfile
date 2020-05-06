@@ -21,6 +21,7 @@ pipeline {
                         sh 'git status'
                         sh 'printenv'
                         sh 'ls -al'
+                        sh 'id'
                         dir("test_server") {
                             sh "docker build -t app:1.0.0 ."
                         }
