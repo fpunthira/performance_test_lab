@@ -1,7 +1,7 @@
 - name: create a Artifactory container
   docker_container:
     name: artifactory
-    image: goodrainapps/artifactory-oss
+    image: docker.bintray.io/jfrog/artifactory-oss
     state: started
     env:
       MIN_MAX_OPEN_FILES: "100"
