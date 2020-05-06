@@ -3,6 +3,8 @@
     name: artifactory
     image: goodrainapps/artifactory-oss
     state: started
+    environment:
+     - MIN_MAX_OPEN_FILES=100
     volumes:
       - artifactory_data:/var/opt/jfrog/artifactory
     ports: 
