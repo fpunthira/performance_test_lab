@@ -15,7 +15,8 @@ pipeline {
         stage('test') {
 
            steps {
-               sh "ansible-playbook ansible/playbook.yaml"
+               sh 'ls -la'
+               sh 'ansible-playbook ./ansible/playbook.yaml'
            }
 
         }
