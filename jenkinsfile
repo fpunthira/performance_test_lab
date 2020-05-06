@@ -21,9 +21,13 @@ pipeline {
                         sh 'git status'
                         sh 'printenv'
                         sh 'ls -al'
+                        dir("test_server") {
+                            sh 'ls -la'
+                        }
                         dir("dev") {
                             echo ">> Run deploy applications "
                         }
+                        sh "ls -la"
                     }
                 }
                 stage('Production stage') {
