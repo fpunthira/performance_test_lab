@@ -5,5 +5,5 @@
   roles:
     - jenkins
     - docker
-    - artifactory
+    - docker_artifactory
     
