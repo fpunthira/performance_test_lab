@@ -1,0 +1,9 @@
+- name: create a Artifactory container
+  docker_container:
+    name: artifactory
+    image: goodrainapps/artifactory-oss
+    state: started
+    volume:
+      - artifactory_data:/var/opt/jfrog/artifactory
+    ports: 
+      - "8081:8081"
