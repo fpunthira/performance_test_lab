@@ -1,12 +1,12 @@
 - name: create a Artifactory container
   docker_container:
     name: artifactory
-    image: portbase/artifactory-oss
+    image: docker.bintray.io/jfrog/artifactory-oss
     state: started
     env:
       MIN_MAX_OPEN_FILES: "100"
     volumes:
-      - artifactory_data1:/var/opt/jfrog/artifactory
+      - artifactory_oss_data2:/var/opt/jfrog/artifactory
     ports: 
       - "8081:8081"
       - "8082:8082"
