@@ -23,6 +23,7 @@ pipeline {
                         sh 'printenv'
                         sh 'ls -al'
                         sh 'id'
+                        sh 'exho' registry
                         dir("test_server") {
                             sh 'docker build' registry + ":$BUILD_NUMBER"
                         }
