@@ -1,3 +1,7 @@
+- name: This command will change the working directory to somedir/.
+  shell:
+    cmd: ls -la
+
 - name: Build an image and push it to a private repo
   docker_image:
     build:
