@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         GIT_URL = 'https://github.com/fpunthira/performance_test_lab.git'
-        registry = 'app'
+        registry = '3.0.57.168:18000/test'
     }
     /* specify nodes for executing */
     agent any
@@ -25,7 +25,8 @@ pipeline {
                         sh 'id'
                         sh "echo ${registry}"
                         dir("test_server") {
-                            sh "docker build -t ${registry}:${env.BUILD_NUMBER} ."
+                            sh "docker build -t ${registry}:${env.BUILD_NUMBER} -t ${registry}:latest . && \
+                            docker push ${registry}:latest"
                         }
                         dir("dev") {
                             echo ">> Run deploy applications "
