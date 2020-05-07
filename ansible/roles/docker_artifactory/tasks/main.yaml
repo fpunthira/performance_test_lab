@@ -16,7 +16,7 @@
       - nexus-config:/opt/sonatype/nexus/etc/karaf
     ports: 
       - "8081:8081"
-    register: nexus_metadata
+  register: nexus_metadata
 
 - name: Wait for nexus to accept connections
   wait_for:
