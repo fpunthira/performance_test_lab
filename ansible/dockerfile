@@ -1,3 +1,0 @@
-FROM sonatype/nexus3
-
-EXPOSE 18000-18200
