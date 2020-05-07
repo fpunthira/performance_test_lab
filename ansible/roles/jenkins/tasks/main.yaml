@@ -15,6 +15,7 @@
     - jenkins
     - python-pip
     - libselinux-python
+    - telnet
 
 - name: Make sure a service is running and enabled
   systemd:
