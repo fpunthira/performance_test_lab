@@ -1,12 +1,12 @@
-- name: Build an image
+- name: Build an nexus3 custom image
   docker_image:
     build:
-      path: "{{ role_path }}/files"
+      path: "{{ role_path }}/files/nexus3_custom"
     name: nexus3_custom
     tag: 1.0.0
     source: build
 
-- name: create a Artifactory container
+- name: create a nexus3 artifactory container
   docker_container:
     name: nexus_artifactory
     image: sonatype/nexus3
@@ -16,15 +16,15 @@
       - nexus-config:/opt/sonatype/nexus/etc/karaf
     ports: 
       - "8081:8081"
-  register: nexus_metadata
+  register: nexus3_metadata
 
-- name: Wait for nexus to accept connections
+- name: Wait for nexus3 to accept connections
   wait_for:
-    host: '{{ nexus_metadata["ansible_facts"]["docker_container"]["NetworkSettings"]["IPAddress"] }}'
+    host: '{{ nexus3_metadata["ansible_facts"]["docker_container"]["NetworkSettings"]["IPAddress"] }}'
     port: 8081
     state: drained
     connect_timeout: 1
     timeout: 30
-  register: nexus_running
-  until: nexus_running is success
+  register: nexus3_running
+  until: nexus3_running is success
   retries: 10
