@@ -3,8 +3,9 @@
 - hosts: jenkins_master
   gather_facts: False
   roles:
-    - jenkins
-    - docker
-    - docker_artifactory
+    - jenkins_master_host
+    - docker_host
+    - nexus3_artifactory_container
+    - vault_container
     
     
