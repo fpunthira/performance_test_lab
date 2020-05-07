@@ -8,7 +8,7 @@
 
 - name: create a nexus3 artifactory container
   docker_container:
-    name: nexus_artifactory
+    name: nexus3_artifactory
     image: sonatype/nexus3
     state: started
     volumes:
