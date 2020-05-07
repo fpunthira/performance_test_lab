@@ -16,3 +16,15 @@
       - nexus-config:/opt/sonatype/nexus/etc/karaf
     ports: 
       - "8081:8081"
+    register: nexus_metadata
+
+- name: Wait for nexus to accept connections
+  wait_for:
+    host: '{{ nexus_metadata["ansible_facts"]["docker_container"]["NetworkSettings"]["IPAddress"] }}'
+    port: 8081
+    state: drained
+    connect_timeout: 1
+    timeout: 30
+  register: nexus_running
+  until: nexus_running is success
+  retries: 10
