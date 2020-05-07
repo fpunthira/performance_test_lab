@@ -8,7 +8,7 @@
     - docker
     - python2-pip
 
-- name: pip install docker-py 
+- name: pip install docker-py
   pip:
     name:
       - docker-py
