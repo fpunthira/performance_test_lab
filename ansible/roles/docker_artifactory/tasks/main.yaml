@@ -1,4 +1,5 @@
-- copy:
+- name: copy
+  copy:
     src: "dockerfile"
     dest: /tmp
 
