@@ -26,6 +26,7 @@ pipeline {
                         sh "echo ${registry}"
                         dir("test_server") {
                             sh "docker build -t ${registry}:${env.BUILD_NUMBER} -t ${registry}:latest . && \
+                            docker login ${registry} 
                             docker push ${registry}:latest"
                         }
                         dir("dev") {
