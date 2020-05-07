@@ -12,6 +12,7 @@
   pip:
     name:
       - docker-py
+      - ansible-lint
 
 
 - name: Make sure a service is running and enabled
