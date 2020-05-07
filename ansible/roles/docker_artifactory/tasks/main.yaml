@@ -9,7 +9,7 @@
 - name: create a nexus3 artifactory container
   docker_container:
     name: nexus3_artifactory
-    image: sonatype/nexus3
+    image: nexus3_custom:1.0.0
     state: started
     volumes:
       - nexus-data:/nexus-data
