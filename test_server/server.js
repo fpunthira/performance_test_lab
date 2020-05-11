@@ -9,21 +9,21 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 var mysql = require('mysql');
 
-var con = mysql.createConnection({
-  host: "172.17.0.1",
-  user: "netapp",
-  password: "Netapp1!",
-  database: "db"
-});
+// var con = mysql.createConnection({
+//   host: "172.17.0.1",
+//   user: "netapp",
+//   password: "Netapp1!",
+//   database: "db"
+// });
 
 
 
-con.connect((err) => {
-    if (err) {
-        throw err;
-    }
-    console.log('Connected to database');
-});
+// con.connect((err) => {
+//     if (err) {
+//         throw err;
+//     }
+//     console.log('Connected to database');
+// });
 
 function registerUser(data){
 
