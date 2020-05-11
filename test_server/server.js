@@ -35,6 +35,12 @@ function registerUser(data){
 
 }
 
+app.get("/test", (req, res, next) => {
+    res.send("Hello Node js Test").status(200);
+});
+
+
+
 app.post("/url", (req, res, next) => {
     registerUser(req.body)
     res.json(req.body).status(200);
