@@ -18,7 +18,7 @@
   shell: kubectl get pod -n trident
   register: trident_pod
 
-- name: dd
+- name: Check Trident pod is running
   debug:
-    msg: "Trident installation success"
+    msg: "Trident pod is running"
     when: trident_pod.stdout.find('trident')
