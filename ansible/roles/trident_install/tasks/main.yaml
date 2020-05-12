@@ -16,15 +16,10 @@
   when: trident_dir.stat.exist is not defined
 
 - name: test
-  shell: kubectl get pod -n trident
+  shell: kubectl get pod -n trident | grep trident
   register: trident_pod
 
 - name: Check Trident pod is running
   debug:
-    var: trident_pod
-  when: trident_pod.stdout.find('trident')
-
-- name: Check Trident pod is running
-  debug:
     msg: "Trident pod is running"
-  when: trident_pod.stdout.find('trident')
+  when: trident_pod.stdout == 1
