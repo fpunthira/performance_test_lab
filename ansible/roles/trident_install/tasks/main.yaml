@@ -5,7 +5,7 @@
 
 - name: This command will change the working directory to somedir/.
   debug: 
-    var: trident.stat.exist
+    var: trident_dir.stat.exist
 
 - name: Download Trident 
   shell: |
