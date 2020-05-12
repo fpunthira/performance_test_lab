@@ -14,7 +14,7 @@
     repo: https://github.com/kubernetes-sigs/kubespray.git
     dest: "{{ root_dir }}"
 
-- name: keep inventory/mycluster directory stat
+- name: Verify inventory/mycluster directory status
   stat:
     path: "{{ root_dir }}/inventory/mycluster"
   register: dir
@@ -37,7 +37,7 @@
   debug: 
     var: ip_hosts
 
-- name: keep inventory/mycluster/hosts.yaml stat
+- name: Verify inventory/mycluster/hosts.yaml file status
   stat:
     path: "{{ root_dir }}/inventory/mycluster/hosts.yaml"
   register: mycluster_inventory_hosts_file

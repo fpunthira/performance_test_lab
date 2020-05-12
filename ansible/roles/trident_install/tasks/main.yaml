@@ -1,11 +1,7 @@
-- name: check mycluster folder is exist
+- name: Verify trident-installer directory is exist
   stat:
     path: "{{ root_dir }}/trident-installer"
   register: trident_dir
-
-- name: This command will change the working directory to somedir/.
-  debug: 
-    var: trident_dir.stat.exists
 
 - name: Download Trident Package
   shell: |
@@ -18,22 +14,22 @@
   when: trident_dir.stat.exists is not defined or trident_dir.stat.exists == false
   ignore_errors: true
 
-- name: Collect trident pod status
+- name: Verify trident pod status
   shell: kubectl get pod -n trident | grep trident
   register: trident_pod
   ignore_errors: true
 
-- name: Trident Installation
+- name: Trident Installation Process
   shell: tridentctl install -n trident
   ignore_errors: true
   when: trident_dir.stat.exists and trident_dir.stat.exists == true and trident_pod.rc != 0
 
-- name: Collect trident pod status
+- name: Verify trident pod status
   shell: kubectl get pod -n trident | grep trident
   register: trident_pod
   ignore_errors: true
 
-- name: Verify Trident pod is running
+- name: Trident pod is running
   debug:
     msg: "Trident pod is running"
   when: trident_pod.rc == 0
