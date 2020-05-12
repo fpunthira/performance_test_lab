@@ -3,17 +3,17 @@
     path: "{{ root_dir }}"
   register: trident_dir
 
-# - name: Download Trident 
-#   shell: |
-#     set -x
-#     cd {{ root_dir }}
-#     wget https://github.com/NetApp/trident/releases/download/v20.04.0/trident-installer-20.04.0.tar.gz
-#     tar -xf trident-installer-20.04.0.tar.gz
-#     cd trident-installer
-#     cp -rp tridentctl /bin/.
-#     tridentctl install -n trident
-#     exit 0
-#   when: trident_dir.stat.exist is not defined
+- name: Download Trident 
+  shell: |
+    set -x
+    cd {{ root_dir }}
+    wget https://github.com/NetApp/trident/releases/download/v20.04.0/trident-installer-20.04.0.tar.gz
+    tar -xf trident-installer-20.04.0.tar.gz
+    cd trident-installer
+    cp -rp tridentctl /bin/.
+    tridentctl install -n trident
+    exit 0
+  when: trident_dir.stat.exist is not defined
 
 - name: test
   shell: kubectl get pod -n trident
@@ -22,4 +22,4 @@
 - name: Check Trident pod is running
   debug:
     msg: "Trident pod is running"
-    when: trident_pod.stdout.find('trident')
+  when: trident_pod.stdout.find('trident')
