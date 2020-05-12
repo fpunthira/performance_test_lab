@@ -7,7 +7,7 @@
   debug: 
     var: trident_dir.stat.exists
 
-- name: Download Trident 
+- name: Download Trident Package
   shell: |
     set -x
     cd {{ root_dir }}
@@ -18,22 +18,22 @@
   when: trident_dir.stat.exists is not defined or trident_dir.stat.exists == false
   ignore_errors: true
 
-- name: test
+- name: Collect trident pod status
   shell: kubectl get pod -n trident | grep trident
   register: trident_pod
   ignore_errors: true
 
-- name: Trident install
+- name: Trident Installation
   shell: tridentctl install -n trident
   ignore_errors: true
   when: trident_dir.stat.exists and trident_dir.stat.exists == true and trident_pod.rc != 0
 
-- name: test
+- name: Collect trident pod status
   shell: kubectl get pod -n trident | grep trident
   register: trident_pod
   ignore_errors: true
 
-- name: Check Trident pod is running
+- name: Verify Trident pod is running
   debug:
     msg: "Trident pod is running"
   when: trident_pod.rc == 0
