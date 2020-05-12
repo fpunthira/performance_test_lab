@@ -22,4 +22,4 @@
 - name: Check Trident pod is running
   debug:
     msg: "Trident pod is running"
-  when: trident_pod.stdout == 1
+  when: trident_pod.stdout == 0
