@@ -30,6 +30,7 @@
   pip:
     requirements: "{{ root_dir }}/requirements.txt"
     virtualenv_python: python3
+    executable: pip3
 
 - name: This command will change the working directory to somedir/.
   debug: 
