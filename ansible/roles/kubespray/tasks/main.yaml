@@ -14,14 +14,14 @@
     repo: https://github.com/kubernetes-sigs/kubespray.git
     dest: "{{ root_dir }}"
 
+- name: check mycluster folder is exist
+  stat:
+    path: "{{ root_dir }}/inventory/mycluster"
+  register: dir
+
 - name: Copy ``inventory/sample`` as ``inventory/mycluster``
-  copy:
-    src: "{{ root_dir }}/inventory/sample"
-    dest: "{{ root_dir }}/inventory/mycluster"
-    owner: root
-    group: root
-    mode: preserve
-    follow: no
+  shell: cp -rfp {{ root_dir }}/inventory/sample {{ root_dir }}/inventory/mycluster
+  when : dir.stat.exist is defined
 
 - name: Install dependencies from ``requirements.txt``
   pip:
