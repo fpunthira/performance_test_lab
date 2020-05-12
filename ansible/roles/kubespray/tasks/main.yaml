@@ -18,9 +18,14 @@
   stat:
     path: "{{ root_dir }}/inventory/mycluster"
   register: dir
+  
+- name: This command will change the working directory to somedir/.
+  debug: 
+    var: dir.stat.exist
 
 - name: Copy ``inventory/sample`` as ``inventory/mycluster``
   shell: cp -rfp {{ root_dir }}/inventory/sample {{ root_dir }}/inventory/mycluster
+  when : dir.stat.exist is defined
 
 - name: Install dependencies from ``requirements.txt``
   pip:
