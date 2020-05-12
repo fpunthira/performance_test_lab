@@ -21,7 +21,7 @@
   
 - name: This command will change the working directory to somedir/.
   debug: 
-    var: dir.stat.exist
+    var: dir.stat.exists
 
 - name: Copy ``inventory/sample`` as ``inventory/mycluster``
   shell: cp -rfp {{ root_dir }}/inventory/sample {{ root_dir }}/inventory/mycluster
