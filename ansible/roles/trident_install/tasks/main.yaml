@@ -3,6 +3,10 @@
     path: "{{ root_dir }}"
   register: trident_dir
 
+- name: This command will change the working directory to somedir/.
+  debug: 
+    var: trident.stat.exist
+
 - name: Download Trident 
   shell: |
     set -x
@@ -12,12 +16,13 @@
     cd trident-installer
     cp -rp tridentctl /bin/.
     tridentctl install -n trident
-    exit 0
   when: trident_dir.stat.exist is not defined
+  ignore_errors: true
 
 - name: test
   shell: kubectl get pod -n trident | grep trident
   register: trident_pod
+  ignore_errors: true
 
 - name: Check Trident pod is running
   debug:
