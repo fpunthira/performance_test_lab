@@ -12,6 +12,7 @@
     cd trident-installer
     cp -rp tridentctl /bin/.
     tridentctl install -n trident
+    exit 0
   when: trident_dir.stat.exist is not defined
 
 - name: test
