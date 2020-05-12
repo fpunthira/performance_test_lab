@@ -21,5 +21,10 @@
 
 - name: Check Trident pod is running
   debug:
+    var: trident_pod
+  when: trident_pod.stdout.find('trident')
+
+- name: Check Trident pod is running
+  debug:
     msg: "Trident pod is running"
   when: trident_pod.stdout.find('trident')
