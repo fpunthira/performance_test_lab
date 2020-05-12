@@ -21,6 +21,7 @@
     owner: root
     group: root
     mode: preserve
+    follow: yes
 
 - name: Install dependencies from ``requirements.txt``
   pip:
