@@ -26,6 +26,11 @@
   pip:
     requirements: "{{ root_dir }}/requirements.txt"
 
+- name: Install dependencies from ``requirements.txt`` with pip3
+  pip:
+    requirements: "{{ root_dir }}/requirements.txt"
+    virtualenv_python: python3
+
 - name: This command will change the working directory to somedir/.
   debug: 
     var: ip_hosts
