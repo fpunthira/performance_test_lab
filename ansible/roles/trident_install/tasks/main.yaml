@@ -16,7 +16,7 @@
     cd trident-installer
     cp -rp tridentctl /bin/.
     tridentctl install -n trident
-  when: trident_dir.stat.exists is not defined
+  when: trident_dir.stat.exists is not defined or trident_dir.stat.exists == false
   ignore_errors: true
 
 - name: test

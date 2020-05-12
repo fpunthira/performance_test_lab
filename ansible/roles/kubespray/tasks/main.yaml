@@ -25,7 +25,7 @@
 
 - name: Copy ``inventory/sample`` as ``inventory/mycluster``
   shell: cp -rfp {{ root_dir }}/inventory/sample {{ root_dir }}/inventory/mycluster
-  when : dir.stat.exists is not defined
+  when : dir.stat.exists is not defined or dir.stat.exists == false
 
 - name: Install dependencies from ``requirements.txt``
   pip:
@@ -48,4 +48,4 @@
 
 - name: Run a command using a templated variable (always use quote filter to avoid injection)
   shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 {{ root_dir }}/contrib/inventory_builder/inventory.py {{ ip_hosts[0] }} {{ ip_hosts[1] }} {{ ip_hosts[2] }}
-  when: mycluster_inventory_hosts_file.stat.exists is not defined
+  when: mycluster_inventory_hosts_file.stat.exists is not defined or mycluster_inventory_hosts_file.stat.exists == false
