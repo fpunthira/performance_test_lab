@@ -4,7 +4,6 @@
     state: present
   vars:
     packages:
-    - git
     - python-pip
     - python3
     - python3-pip
