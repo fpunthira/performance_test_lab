@@ -28,4 +28,4 @@
 
 - name: This command will change the working directory to somedir/.
   shell:
-    cmd: echo "{{ ip_hosts }}"
+    cmd: echo {{ ip_hosts[0] }}
