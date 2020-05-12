@@ -1,6 +1,6 @@
 #### Branch Maater
 ---
-- hosts: jenkins_master
+- hosts: kubespray
   gather_facts: False
   roles:
     - kubespray
