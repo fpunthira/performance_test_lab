@@ -27,5 +27,5 @@
     requirements: /root/kubespray/requirements.txt
 
 - name: This command will change the working directory to somedir/.
-  shell:
-    cmd: echo {{ ip_hosts[0] }}
+  debug: 
+    var: ip_hosts
