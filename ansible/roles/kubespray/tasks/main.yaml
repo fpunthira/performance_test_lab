@@ -28,4 +28,4 @@
 
 - name: This command will change the working directory to somedir/.
   debug: 
-    var: ip_hosts
+    var: ip_hosts[0]
