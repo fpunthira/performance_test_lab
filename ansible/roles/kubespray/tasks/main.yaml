@@ -37,4 +37,4 @@
     var: ip_hosts
 
 - name: Run a command using a templated variable (always use quote filter to avoid injection)
-  shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 {{ root_dir }}/contrib/inventory_builder/inventory.py {{ ip_hosts[0] }} {{ ip_hosts[1] }} {{ ip_hosts[2] }}
+  shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 {{ root_dir }}/contrib/inventory_builder/inventory.py {{ ip_hosts }}
