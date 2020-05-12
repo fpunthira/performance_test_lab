@@ -12,20 +12,23 @@
 - name: checkout kubespray repository
   git:
     repo: https://github.com/kubernetes-sigs/kubespray.git
-    dest: /root/kubespray
+    dest: "{{ root_dir }}"
 
 - name: Copy ``inventory/sample`` as ``inventory/mycluster``
   copy:
-    src: /root/kubespray/inventory/sample
-    dest: /root/kubespray/inventory/mycluster
+    src: "{{ root_dir }}/inventory/sample"
+    dest: "{{ root_dir }}/inventory/mycluster"
     owner: root
     group: root
     mode: preserve
 
 - name: Install dependencies from ``requirements.txt``
   pip:
-    requirements: /root/kubespray/requirements.txt
+    requirements: "{{ root_dir }}/requirements.txt"
 
 - name: This command will change the working directory to somedir/.
   debug: 
     var: ip_hosts[0]
+
+- name: Run a command using a templated variable (always use quote filter to avoid injection)
+  shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 /root/kubecontrib/inventory_builder/inventory.py {{ ip_hosts }}

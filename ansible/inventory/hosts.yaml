@@ -13,6 +13,7 @@ all:
           ansible_host: 18.141.184.135
           ansible_user: ec2-user
           ansible_become: true
+          root_dir: /root/kubespray
           ip_hosts: [
             172.31.29.242,
             172.31.28.213,
