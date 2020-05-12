@@ -9,20 +9,16 @@
     - python3-pip
     - telnet
 
-- name: checkout kubespray repository
+- name: Checkout Kubespray from Github
   git:
     repo: https://github.com/kubernetes-sigs/kubespray.git
     dest: "{{ root_dir }}"
 
-- name: check mycluster folder is exist
+- name: keep inventory/mycluster directory stat
   stat:
     path: "{{ root_dir }}/inventory/mycluster"
   register: dir
   
-- name: This command will change the working directory to somedir/.
-  debug: 
-    var: dir.stat.exists
-
 - name: Copy ``inventory/sample`` as ``inventory/mycluster``
   shell: cp -rfp {{ root_dir }}/inventory/sample {{ root_dir }}/inventory/mycluster
   when : dir.stat.exists is not defined or dir.stat.exists == false
@@ -37,15 +33,15 @@
     virtualenv_python: python3
     executable: pip3
 
-- name: This command will change the working directory to somedir/.
+- name: List all hosts IP to generate inventory hosts file
   debug: 
     var: ip_hosts
 
-- name: check mycluster folder is exist
+- name: keep inventory/mycluster/hosts.yaml stat
   stat:
     path: "{{ root_dir }}/inventory/mycluster/hosts.yaml"
   register: mycluster_inventory_hosts_file
 
-- name: Run a command using a templated variable (always use quote filter to avoid injection)
+- name: Generate inventory/mycluster/hosts.yaml
   shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 {{ root_dir }}/contrib/inventory_builder/inventory.py {{ ip_hosts[0] }} {{ ip_hosts[1] }} {{ ip_hosts[2] }}
   when: mycluster_inventory_hosts_file.stat.exists is not defined or mycluster_inventory_hosts_file.stat.exists == false
