@@ -9,8 +9,19 @@
     - python3-pip
     - telnet
 
-- name: checkout repository
+- name: checkout kubespray repository
   git:
     repo: https://github.com/kubernetes-sigs/kubespray.git
     dest: /root/kubespray
 
+- name: Copy ``inventory/sample`` as ``inventory/mycluster``
+  copy:
+    src: /root/kubespray/inventory/sample
+    dest: /root/kubespray/inventory/mycluster
+    owner: root
+    group: root
+    mode: preserve
+
+- name: Install dependencies from ``requirements.txt``
+  pip:
+    requirements: /root/kubespray/requirements.txt
