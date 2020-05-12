@@ -9,3 +9,8 @@
     - python3-pip
     - telnet
 
+- name: checkout repository
+  git:
+    repo: https://github.com/kubernetes-sigs/kubespray.git
+    dest: /root/kubespray
+
