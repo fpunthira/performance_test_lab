@@ -25,7 +25,7 @@
 
 - name: Copy ``inventory/sample`` as ``inventory/mycluster``
   shell: cp -rfp {{ root_dir }}/inventory/sample {{ root_dir }}/inventory/mycluster
-  when : dir.stat.exist is not defined
+  when : dir.stat.exist is undefined
 
 - name: Install dependencies from ``requirements.txt``
   pip:
