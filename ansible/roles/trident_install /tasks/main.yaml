@@ -1,0 +1,24 @@
+- name: check mycluster folder is exist
+  stat:
+    path: "{{ root_dir }}"
+  register: trident_dir
+
+- name: Download Trident 
+  shell: |
+    set -x
+    cd {{ root_dir }}
+    wget https://github.com/NetApp/trident/releases/download/v20.04.0/trident-installer-20.04.0.tar.gz
+    tar -xf trident-installer-20.04.0.tar.gz
+    cd trident-installer
+    cp -rp tridentctl /bin/.
+    tridentctl install -n trident
+  when: trident_dir.stat.exist is not defined
+
+- name: test
+  shell: kubectl get pod -n trident
+  register: trident_pod
+
+- name: dd
+  debug:
+    msg: "Trident installation success"
+    when: trident_pod.stdout.find('trident')
