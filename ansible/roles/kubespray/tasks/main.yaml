@@ -43,5 +43,5 @@
   register: mycluster_inventory_hosts_file
 
 - name: Generate inventory/mycluster/hosts.yaml
-  shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 {{ root_dir }}/contrib/inventory_builder/inventory.py {{ ip_hosts[0] }} {{ ip_hosts[1] }} {{ ip_hosts[2] }}
+  shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 {{ root_dir }}/contrib/inventory_builder/inventory.py {{ ip_hosts[0] }} {{ ip_hosts[1] }}
   when: mycluster_inventory_hosts_file.stat.exists is not defined or mycluster_inventory_hosts_file.stat.exists == false
