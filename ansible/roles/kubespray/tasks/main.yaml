@@ -56,6 +56,12 @@
         cd /root/kubespray && 
         ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
   when: kubespray.rc != 0
-  
+
+- name: Verify root can execute kubectl command
+  stat:
+    path: "/bin/kubectl"
+  register: kubectl
+
 - name: Make root execute kubectl command
   shell: cp -rp /usr/local/bin/kube* /bin/.
+  when: kubectl.stat.exists is not defined
