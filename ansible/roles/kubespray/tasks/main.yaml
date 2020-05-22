@@ -51,9 +51,9 @@
         cd /root/kubespray && 
         ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
   async: 1000 # Maximum allowed time in Seconds
-  poll: 0 # Polling Interval in Seconds
+  poll: 05 # Polling Interval in Seconds
   register: scrout
 
 - name: Some task just to debug
   debug: 
-    var: scrout
+    var: scrout.stdout_lines
