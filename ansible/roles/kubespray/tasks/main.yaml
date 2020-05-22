@@ -50,3 +50,6 @@
   shell: |
         cd /root/kubespray && 
         ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
+
+- name: Make root execute kubectl command
+  shell: cp -rp /usr/local/bin/kube* /bin/.
