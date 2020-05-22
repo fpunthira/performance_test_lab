@@ -46,10 +46,16 @@
   shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 {{ root_dir }}/contrib/inventory_builder/inventory.py {{ ip_hosts[0] }} {{ ip_hosts[1] }}
   when: mycluster_inventory_hosts_file.stat.exists is not defined or mycluster_inventory_hosts_file.stat.exists == false
 
+- name: Verify trident pod status
+  shell: /usr/local/bin/kubectl get node | grep ready
+  register: kubespray
+  ignore_errors: true
+
 - name: Install kubespray
   shell: |
         cd /root/kubespray && 
         ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
-
+  when: kubespray.rc != 0
+  
 - name: Make root execute kubectl command
   shell: cp -rp /usr/local/bin/kube* /bin/.
