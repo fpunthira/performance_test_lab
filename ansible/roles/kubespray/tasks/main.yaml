@@ -50,5 +50,12 @@
   shell: |
         cd /root/kubespray && 
         ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
-  async: 45
-  poll: 5
+  async: 1000
+  register: yum_sleeper
+
+- name: 'YUM - check on async task'
+  async_status:
+    jid: "{{ yum_sleeper.ansible_job_id }}"
+  register: job_result
+  until: job_result.finished
+  retries: 30
