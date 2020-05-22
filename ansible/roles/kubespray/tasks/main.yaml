@@ -45,3 +45,6 @@
 - name: Generate inventory/mycluster/hosts.yaml
   shell: CONFIG_FILE={{ root_dir }}/inventory/mycluster/hosts.yaml python3 {{ root_dir }}/contrib/inventory_builder/inventory.py {{ ip_hosts[0] }} {{ ip_hosts[1] }}
   when: mycluster_inventory_hosts_file.stat.exists is not defined or mycluster_inventory_hosts_file.stat.exists == false
+
+- name: Install kubespray
+  shell: ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
