@@ -56,4 +56,4 @@
 
 - name: Some task just to debug
   debug: 
-    var: scrout.stdout_lines
+    var: scrout
