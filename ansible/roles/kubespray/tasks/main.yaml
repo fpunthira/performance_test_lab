@@ -47,4 +47,6 @@
   when: mycluster_inventory_hosts_file.stat.exists is not defined or mycluster_inventory_hosts_file.stat.exists == false
 
 - name: Install kubespray
-  shell: ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
+  shell: |
+        cd /root/kubespray && 
+        ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
