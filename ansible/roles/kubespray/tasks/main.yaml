@@ -50,3 +50,5 @@
   shell: |
         cd /root/kubespray && 
         ansible-playbook -i inventory/mycluster/hosts.yaml -u ec2-user --become --become-user=root cluster.yml
+  async: 45
+  poll: 5
