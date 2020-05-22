@@ -47,7 +47,7 @@
   when: mycluster_inventory_hosts_file.stat.exists is not defined or mycluster_inventory_hosts_file.stat.exists == false
 
 - name: Verify trident pod status
-  shell: /usr/local/bin/kubectl get node | grep ready
+  shell: /usr/local/bin/kubectl get node | grep -i ready
   register: kubespray
   ignore_errors: true
 
