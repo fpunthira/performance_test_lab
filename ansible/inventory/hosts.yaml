@@ -15,6 +15,6 @@ all:
           ansible_become: true
           root_dir: /root/kubespray
           ip_hosts: [
-            172.31.22.172,
-            172.31.30.126
+            172.31.24.168,
+            172.31.27.200
           ]
