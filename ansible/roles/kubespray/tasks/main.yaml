@@ -4,9 +4,9 @@
     state: present
   vars:
     packages:
-    - python-pip
-    - python3
-    - python3-pip
+    # - python-pip
+    # - python3
+    # - python3-pip
     - telnet
 
 - name: Checkout Kubespray from Github
