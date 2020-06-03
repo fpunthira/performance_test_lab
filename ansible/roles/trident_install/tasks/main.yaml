@@ -8,6 +8,7 @@
     - iscsi-initiator-utils 
     - sg3_utils 
     - device-mapper-multipath
+    - nfs-utils
 
 - name: Verify trident pod status
   shell: mpathconf --enable --with_multipathd y
