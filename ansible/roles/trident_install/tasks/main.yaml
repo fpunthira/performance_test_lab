@@ -1,3 +1,27 @@
+- name: ensure a list of packages installed
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+    - lsscsi 
+    - iscsi-initiator-utils 
+    - sg3_utils 
+    - device-mapper-multipath
+
+- name: Verify trident pod status
+  shell: mpathconf --enable --with_multipathd y
+
+- name: Make sure a service is running and enabled
+  systemd:
+    enabled: yes
+    state: started
+    name: "{{ item }}"
+  with_items:
+    - iscsid 
+    - multipathd
+    - iscsi
+
 - name: Verify trident-installer directory is exist
   stat:
     path: "{{ root_dir }}/trident-installer"
