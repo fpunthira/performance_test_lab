@@ -5,4 +5,5 @@
   tasks:
     - name: test
       debug: 
-        var: {{ host1 }}
+        var: {{ item }}
+      with_items: {{ host1 }}
